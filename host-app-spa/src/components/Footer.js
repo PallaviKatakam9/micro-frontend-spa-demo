@@ -1,0 +1,3 @@
+export default function Footer() {
+  return <footer><p>&copy; 2025 Multi-Store E-commerce</p></footer>;
+}
