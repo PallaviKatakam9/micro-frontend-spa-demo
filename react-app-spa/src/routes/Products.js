@@ -1,15 +1,15 @@
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react';
- const {fetchProducts} = await import("host_app/store/apis");
+ const {fetchStoreAProducts} = await import("host_app/store/apis");
 
 export default function Products() {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart.items);
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.storeAproducts.products);
 
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchStoreAProducts())
   }, [dispatch]);
 
 
