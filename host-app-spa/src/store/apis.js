@@ -7,7 +7,7 @@ export const fetchStoreAProducts = createAsyncThunk('storeA/fetchProducts', asyn
 });
 
 export const fetchStoreBProducts = createAsyncThunk('storeB/fetchProducts', async () => {
-    const response = await fetch('https://api.escuelajs.co/api/v1/products');
+    const response = await fetch('https://dummyjson.com/products');
     const data = await response.json();
     return data
 });

@@ -1,31 +1,25 @@
 <template>
   <div>
-    <h1>Cart Items: {{ hostState.cart?.items?.length || 0 }}</h1>
-    <h1>Products Items: {{ hostState.storeAproducts?.products?.length || 0 }}</h1>
+    <h1>Products Items: {{ hostState.storeBProducts?.products?.length || 0 }}</h1>
 
-    <h2>Products:</h2>
-    <ul>
-      <li v-for="product in hostState.storeAproducts?.products || []" :key="product.id">
-        {{ product.title }} - ${{ product.price }}
-      </li>
-    </ul>
+    <div class='grid grid-cols-4 gap-4'>
+      <Card :productObj=product v-for="product in hostState.storeBProducts?.products" :key="product.id" />
+    </div>
 
-    <button @click="addItem">Add Item</button>
   </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
+import Card from '../components/Card.vue';
 import { hostState, initHostStore, dispatchToHost } from '../store/hostStore.js';
 
-const products = hostState?.storeAproducts?.products;
-
-console.log('Products:', products);
+const products = hostState?.storeBProducts?.products;
 
 onMounted(async () => {
   await initHostStore();
-  const {fetchStoreAProducts} = await import("host_app/store/apis");
-  dispatchToHost(fetchStoreAProducts())
+  const {fetchStoreBProducts} = await import("host_app/store/apis");
+  dispatchToHost(fetchStoreBProducts())
 });
 
 function addItem() {

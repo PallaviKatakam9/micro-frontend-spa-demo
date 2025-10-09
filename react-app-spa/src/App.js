@@ -4,7 +4,6 @@ export default function App() {
   return (
     <div className="flex flex-col">
       <main className="flex-grow p-10">
-        <p>React Remote App - Store A</p>
         <Outlet />
       </main>
     </div>

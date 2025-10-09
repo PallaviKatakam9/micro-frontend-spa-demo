@@ -2,11 +2,11 @@ import {useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react';
  const {fetchStoreAProducts} = await import("host_app/store/apis");
 
+ import Card from '../Components/Card.js';
+
 export default function Products() {
   const dispatch = useDispatch();
-
-  const cartItems = useSelector((state) => state.cart.items);
-  const products = useSelector((state) => state.storeAproducts.products);
+  const products = useSelector((state) => state.storeAProducts.products);
 
   useEffect(() => {
     dispatch(fetchStoreAProducts())
@@ -16,15 +16,13 @@ export default function Products() {
   return (
     <div>
       <p>Product Listing for Store A</p>
-      <p>{cartItems.length} items in cart</p>
+
       {products && products?.length > 0 ? (
-        <ul>
+        <div className='grid grid-cols-4 gap-4'>
           {products.map(product => ( 
-            <li key={product.id}>
-              {product.title} - ${product.price}
-            </li>   
+            <Card key={product.id} productObj={product} />
           ))}
-        </ul>
+        </div>
       ) : (
         <p>Loading products...</p>
       )}
